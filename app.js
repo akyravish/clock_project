@@ -55,10 +55,15 @@ const getDate = () => {
 	const hourNeddleRotation = scale(shortHour, 0, 11, 0, 360);
 	const minuteNeddleRotation = scale(minute, 0, 59, 0, 360);
 	const secondNeddleRotation = scale(second, 0, 59, 0, 360);
+	const timeHourFormat = shortHour < 10 ? '0' + shortHour : shortHour;
+	const timeMinuteFormat = minute < 10 ? '0' + minute : minute;
 
 	hourEl.style.transform = `translate(-50%, -100%) rotate(${hourNeddleRotation}deg)`;
 	minuteEl.style.transform = `translate(-50%, -100%) rotate(${minuteNeddleRotation}deg)`;
 	secondEl.style.transform = `translate(-50%, -100%) rotate(${secondNeddleRotation}deg)`;
+
+	timeEl.innerHTML = `${timeHourFormat}:${timeMinuteFormat}`;
+	dateEl.innerHTML = `${daysArray[day]} ${monthsArray[month]}, ${date}`;
 };
 
 function scale(number, inMin, inMax, outMin, outMax) {
